@@ -1,0 +1,46 @@
+# epoll结合线程池简单实现Http静态服务器
+
+## 前言
+
+这部分内容主要是在公司技术分享讲到，整理一下顺便发出来
+
+只实现了HTTP请求中GET请求的解析，没有做太多繁杂的东西，本身的目标不在HTTP服务器上
+
+这一部分也是为后续的一个负载均衡框架作引，作为架构下的逻辑服务器用于测试
+
+这部分代码参考了服务器编程书籍中的Http静态服务器逻辑实现，Nginx线程池源码，天龙八部服务端源码等，有点糅合
+
+## 组件介绍
+
+### Type.h
+
+封装了信号量和互斥锁
+
+### fdwrapper.h
+
+封装epoll的一些事件注册接口
+
+### threadpool.h
+
+线程池的简单实现
+
+### Task.h
+
+任务类，主要有主从状态机进行Http请求解析和Http响应写入
+
+### main.cpp
+
+主函数，仅用于I/O操作
+
+## 编译运行方法
+
+``` shell
+[develop@localhost http_server]$ mkdir build
+[develop@localhost http_server]$ cd build/
+[develop@localhost build]$ cmake ..
+[develop@localhost build]$ make
+[develop@localhost build]$ cd bin
+[develop@localhost bin]$ ./httpServer 192.168.25.191 12345
+```
+
+毕竟是Http服务器，直接用浏览器访问就行。

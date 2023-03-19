@@ -1,0 +1,6 @@
+PROJECT(FDWRAPPER)
+
+MESSAGE(STATUS "—————————————HEEEEE————————————————")
+
+ADD_LIBRARY(fdwrapper STATIC fdwrapper.cpp)
+TARGET_INCLUDE_DIRECTORIES(fdwrapper PUBLIC ${PROJECT_SOURCE_DIR})
